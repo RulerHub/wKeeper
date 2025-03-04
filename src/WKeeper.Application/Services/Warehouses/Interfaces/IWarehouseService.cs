@@ -1,6 +1,6 @@
-﻿using wKeeper.Core.Entities.Warehouses;
+﻿using WKeeper.Core.Entities.Warehouses;
 
-namespace wKeeper.Application.Services.Warehouses.Interfaces;
+namespace WKeeper.Application.Services.Warehouses.Interfaces;
 
 public interface IWarehouseService
 {

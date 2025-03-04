@@ -1,6 +1,6 @@
-﻿using wKeeper.Core.Entities.Abstractions;
+﻿using WKeeper.Core.Entities.Abstractions;
 
-namespace wKeeper.Core.Entities.Logistic;
+namespace WKeeper.Core.Entities.Logistic;
 
 public class Provider : Entity
 {

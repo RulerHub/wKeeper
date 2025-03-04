@@ -1,10 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using wKeeper.Application.Data;
-using wKeeper.Application.Services.Categories.Interfaces;
-using wKeeper.Core.DataTransferObjets.CategoryDtos;
-using wKeeper.Core.Entities.Warehouses;
+using WKeeper.Application.Data;
+using WKeeper.Application.Services.Categories.Interfaces;
+using WKeeper.Core.Entities.Warehouses;
 
-namespace wKeeper.Application.Services.Categories.Implements;
+namespace WKeeper.Application.Services.Categories.Implements;
 
 public class CategoryService(ApplicationDbContext context) : ICategoryService
 {
@@ -42,7 +41,7 @@ public class CategoryService(ApplicationDbContext context) : ICategoryService
         return await _context.Categories.FirstOrDefaultAsync(c => c.Id == id);
     }
 
-    public async Task<Category?> UpdateAsync(int id, UpdateCategoryDto model)
+    public async Task<Category?> UpdateAsync(int id, Category model)
     {
         var query = await GetByIdAsync(id);
         if (query is null)

@@ -2,19 +2,19 @@
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using wKeeper.Application.Data;
-using wKeeper.Application.Services.Categories.Implements;
-using wKeeper.Application.Services.Categories.Interfaces;
-using wKeeper.Application.Services.Departments.Implements;
-using wKeeper.Application.Services.Departments.Interfaces;
-using wKeeper.Application.Services.Enterprices.Implements;
-using wKeeper.Application.Services.Enterprices.Interfaces;
-using wKeeper.Application.Services.Items.Implements;
-using wKeeper.Application.Services.Items.Interfaces;
-using wKeeper.Application.Services.Warehouses.Implements;
-using wKeeper.Application.Services.Warehouses.Interfaces;
+using WKeeper.Application.Data;
+using WKeeper.Application.Services.Categories.Implements;
+using WKeeper.Application.Services.Categories.Interfaces;
+using WKeeper.Application.Services.Departments.Implements;
+using WKeeper.Application.Services.Departments.Interfaces;
+using WKeeper.Application.Services.Enterprices.Implements;
+using WKeeper.Application.Services.Enterprices.Interfaces;
+using WKeeper.Application.Services.Items.Implements;
+using WKeeper.Application.Services.Items.Interfaces;
+using WKeeper.Application.Services.Warehouses.Implements;
+using WKeeper.Application.Services.Warehouses.Interfaces;
 
-namespace wKeeper.Application;
+namespace WKeeper.Application;
 
 public static class DependencyInjection
 {

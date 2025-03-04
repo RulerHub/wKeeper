@@ -1,7 +1,70 @@
 ﻿@page "/"
 
-<PageTitle>Home</PageTitle>
+@using Microsoft.AspNetCore.Identity
+@using WKeeper.Application.Services.Enterprices.Interfaces
+@using WKeeper.Core.Entities.Enterprices
+@using WKeeper.Core.Entities.Identity
 
-<h1>Hello, world!</h1>
+@inject NavigationManager NavigationManager
 
-Welcome to your new Fluent Blazor app.
+@inject IEnterpriceService EnterpriceService
+
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+@inject UserManager<ApplicationUser> UserManager
+
+@attribute [StreamRendering]
+
+@if (_enterprice is null)
+{
+    <PageTitle>Home | wKeeper</PageTitle>
+}
+else
+{
+    <PageTitle>Home | @_enterprice.Name</PageTitle>
+}
+
+<AuthorizeView>
+    <Authorized>
+        @if (_enterprice is null)
+        {
+            <p><em>Loading...</em></p>
+            <h1>Create one</h1>
+        }
+        else
+        {
+            <h1>@_enterprice.Name</h1>
+            <p>@_enterprice.Description</p>
+            <small>@_enterprice.DateCreate</small>
+            <FluentButton OnClick="GoToEManage">Manage</FluentButton>
+        }
+    </Authorized>
+    <NotAuthorized>
+        Debes Logearte
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    private Enterprice? _enterprice { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        await Task.Delay(500);
+
+        if (user.Identity.IsAuthenticated)
+        {
+            var appUser = await UserManager.GetUserAsync(user);
+            if (appUser != null)
+            {
+                _enterprice = await EnterpriceService.GetEnterpriceAsync(appUser.Id);
+            }
+        }
+    }
+
+    public void GoToEManage(){
+        NavigationManager.NavigateTo("/enterprice/home");
+    }
+}

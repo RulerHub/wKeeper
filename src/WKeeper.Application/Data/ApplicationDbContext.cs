@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using wKeeper.Core.Entities.Enterprices;
-using wKeeper.Core.Entities.Identity;
-using wKeeper.Core.Entities.Logistic;
-using wKeeper.Core.Entities.Sales;
-using wKeeper.Core.Entities.Warehouses;
+using WKeeper.Core.Entities.Enterprices;
+using WKeeper.Core.Entities.Identity;
+using WKeeper.Core.Entities.Logistic;
+using WKeeper.Core.Entities.Sales;
+using WKeeper.Core.Entities.Warehouses;
 
-namespace wKeeper.Application.Data;
+namespace WKeeper.Application.Data;
 
 public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext<ApplicationUser>(options)
 {

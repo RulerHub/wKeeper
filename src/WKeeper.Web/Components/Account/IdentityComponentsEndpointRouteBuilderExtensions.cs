@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
 using System.Security.Claims;
 using System.Text.Json;
+using WKeeper.Core.Entities.Identity;
 using WKeeper.Web.Components.Account.Pages;
 using WKeeper.Web.Components.Account.Pages.Manage;
-using WKeeper.Web.Data;
 
 namespace WKeeper.Web.Components.Account
 {

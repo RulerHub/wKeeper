@@ -1,4 +1,4 @@
-﻿using wKeeper.Core.Entities.Abstractions;
+﻿using WKeeper.Core.Entities.Abstractions;
 
 namespace wKeeper.Core.Entities.Sales;
 

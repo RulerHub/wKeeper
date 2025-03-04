@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using wKeeper.Application.Data;
-using wKeeper.Application.Services.Enterprices.Interfaces;
-using wKeeper.Core.Entities.Enterprices;
-using wKeeper.Core.Entities.Identity;
+using WKeeper.Application.Data;
+using WKeeper.Application.Services.Enterprices.Interfaces;
+using WKeeper.Core.Entities.Enterprices;
+using WKeeper.Core.Entities.Identity;
 
-namespace wKeeper.Application.Services.Enterprices.Implements;
+namespace WKeeper.Application.Services.Enterprices.Implements;
 
 public class EnterpriceService : IEnterpriceService
 {

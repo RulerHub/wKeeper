@@ -1,4 +1,4 @@
-﻿namespace wKeeper.Core.Entities.Abstractions;
+﻿namespace WKeeper.Core.Entities.Abstractions;
 
 public abstract class Entity
 {

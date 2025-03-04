@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using wKeeper.Core.Entities.Abstractions;
-using wKeeper.Core.Entities.Enterprices;
+using WKeeper.Core.Entities.Abstractions;
+using WKeeper.Core.Entities.Enterprices;
 
-namespace wKeeper.Core.Entities.Warehouses;
+namespace WKeeper.Core.Entities.Warehouses;
 
 public class Warehouse : Entity
 {

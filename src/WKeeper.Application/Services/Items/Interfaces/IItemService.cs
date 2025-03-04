@@ -1,13 +1,12 @@
-﻿using wKeeper.Core.DataTransferObjets.ItemDtos;
-using wKeeper.Core.Entities.Warehouses;
+﻿using WKeeper.Core.Entities.Warehouses;
 
-namespace wKeeper.Application.Services.Items.Interfaces;
+namespace WKeeper.Application.Services.Items.Interfaces;
 
 public interface IItemService
 {
     Task<List<Item>> GetAsync();
     Task<Item?> GetByIdAsync(int id);
     Task<Item?> CreateAsync(Item model);
-    Task<Item?> UpdateAsync(int id, UpdateItemDto model);
+    Task<Item?> UpdateAsync(int id, Item model);
     Task<Item> DeleteAsync(int id);
 }

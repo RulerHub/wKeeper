@@ -1,0 +1,38 @@
+﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.FluentUI.AspNetCore.Components;
+using WKeeper.Core.Entities.Warehouses;
+
+
+namespace WKeeper.Web.Components.Warehouses.Pages;
+
+public partial class WarehouseUpdateForm
+{
+    private EditContext _editContext = default!;
+    [CascadingParameter]
+    public FluentDialog Dialog { get; set; } = default!;
+
+    [Parameter]
+    public Warehouse Content { get; set; }
+
+    protected override void OnInitialized()
+    {
+        _editContext = new EditContext(Content);
+    }
+
+    private async Task CancelAsync()
+    {
+        ToastService.ShowWarning("Create cancel");
+        await Dialog.CancelAsync();
+    }
+
+    private async Task SaveAsync()
+    {
+        if (_editContext.Validate())
+        {
+            ToastService.ShowSuccess("Update Warehouse");
+            await WarehouseService.UpdateAsync(Content.Id, Content);
+            await Dialog.CloseAsync(Content);
+        }
+    }
+}

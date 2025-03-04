@@ -1,14 +1,12 @@
-﻿
-using wKeeper.Core.DataTransferObjets.CategoryDtos;
-using wKeeper.Core.Entities.Warehouses;
+﻿using WKeeper.Core.Entities.Warehouses;
 
-namespace wKeeper.Application.Services.Categories.Interfaces;
+namespace WKeeper.Application.Services.Categories.Interfaces;
 
 public interface ICategoryService
 {
     Task<List<Category>> GetAsync();
     Task<Category?> GetByIdAsync(int id);
     Task<Category?> CreateAsync(Category model);
-    Task<Category?> UpdateAsync(int id, UpdateCategoryDto model);
+    Task<Category?> UpdateAsync(int id, Category model);
     Task<Category> DeleteAsync(int id);
 }

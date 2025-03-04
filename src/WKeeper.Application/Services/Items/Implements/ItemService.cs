@@ -1,10 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using wKeeper.Application.Data;
-using wKeeper.Application.Services.Items.Interfaces;
-using wKeeper.Core.DataTransferObjets.ItemDtos;
-using wKeeper.Core.Entities.Warehouses;
+using WKeeper.Application.Data;
+using WKeeper.Application.Services.Items.Interfaces;
+using WKeeper.Core.Entities.Warehouses;
 
-namespace wKeeper.Application.Services.Items.Implements;
+namespace WKeeper.Application.Services.Items.Implements;
 
 public class ItemService(ApplicationDbContext context) : IItemService
 {
@@ -39,7 +38,7 @@ public class ItemService(ApplicationDbContext context) : IItemService
         return await _context.Items.FirstOrDefaultAsync(c => c.Id == id);
     }
 
-    public async Task<Item?> UpdateAsync(int id, UpdateItemDto model)
+    public async Task<Item?> UpdateAsync(int id, Item model)
     {
         var query = await GetByIdAsync(id);
         if (query is null)

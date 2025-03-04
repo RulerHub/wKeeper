@@ -1,14 +1,12 @@
-﻿
-using wKeeper.Core.DataTransferObjets.DepartmentDtos;
-using wKeeper.Core.Entities.Warehouses;
+﻿using WKeeper.Core.Entities.Warehouses;
 
-namespace wKeeper.Application.Services.Departments.Interfaces;
+namespace WKeeper.Application.Services.Departments.Interfaces;
 
 public interface IDepartmentService
 {
     Task<List<Department>> GetAsync();
     Task<Department?> GetByIdAsync(int id);
     Task<Department?> CreateAsync(Department model);
-    Task<Department?> UpdateAsync(int id, UpdateDepartmentDto model);
+    Task<Department?> UpdateAsync(int id, Department model);
     Task<Department> DeleteAsync(int id);
 }

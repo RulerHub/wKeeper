@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components.Server;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using System.Security.Claims;
-using WKeeper.Web.Data;
+using WKeeper.Core.Entities.Identity;
 
 namespace WKeeper.Web.Components.Account
 {

@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Identity;
-using WKeeper.Web.Data;
+using WKeeper.Core.Entities.Identity;
 
 namespace WKeeper.Web.Components.Account
 {

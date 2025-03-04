@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
-using wKeeper.Core.Entities.Enterprices;
+using WKeeper.Core.Entities.Enterprices;
 
-namespace wKeeper.Core.Entities.Identity;
+namespace WKeeper.Core.Entities.Identity;
 
 // Add profile data for application users by adding properties to the ApplicationUser class
 public class ApplicationUser : IdentityUser

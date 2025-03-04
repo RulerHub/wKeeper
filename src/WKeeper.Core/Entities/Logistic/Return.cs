@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using wKeeper.Core.Entities.Abstractions;
+using WKeeper.Core.Entities.Abstractions;
 
-namespace wKeeper.Core.Entities.Logistic;
+namespace WKeeper.Core.Entities.Logistic;
 
 public class Return : Entity
 {

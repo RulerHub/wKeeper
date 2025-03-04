@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using wKeeper.Core.Entities.Abstractions;
+using WKeeper.Core.Entities.Abstractions;
 
-namespace wKeeper.Core.Entities.Warehouses;
+namespace WKeeper.Core.Entities.Warehouses;
 
 [Table(name: "Items")]
 public class Item : Entity

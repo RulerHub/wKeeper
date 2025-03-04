@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using wKeeper.Application.Data;
-using wKeeper.Application.Services.Enterprices.Interfaces;
-using wKeeper.Application.Services.Warehouses.Interfaces;
-using wKeeper.Core.Entities.Identity;
-using wKeeper.Core.Entities.Warehouses;
+using WKeeper.Application.Data;
+using WKeeper.Application.Services.Enterprices.Interfaces;
+using WKeeper.Application.Services.Warehouses.Interfaces;
+using WKeeper.Core.Entities.Identity;
+using WKeeper.Core.Entities.Warehouses;
 
-namespace wKeeper.Application.Services.Warehouses.Implements;
+namespace WKeeper.Application.Services.Warehouses.Implements;
 
 public class WarehouseService(
     ApplicationDbContext context,

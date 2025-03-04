@@ -1,5 +1,5 @@
 ﻿using wKeeper.Core.DataTransferObjets.DepartmentDtos;
-using wKeeper.Core.Entities.Warehouses;
+using WKeeper.Core.Entities.Warehouses;
 
 namespace wKeeper.Core.Mappers;
 

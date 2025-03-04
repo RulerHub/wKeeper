@@ -1,8 +1,8 @@
-﻿using wKeeper.Core.Entities.Abstractions;
-using wKeeper.Core.Entities.Identity;
-using wKeeper.Core.Entities.Warehouses;
+﻿using WKeeper.Core.Entities.Abstractions;
+using WKeeper.Core.Entities.Identity;
+using WKeeper.Core.Entities.Warehouses;
 
-namespace wKeeper.Core.Entities.Enterprices;
+namespace WKeeper.Core.Entities.Enterprices;
 
 public class Enterprice : Entity
 {

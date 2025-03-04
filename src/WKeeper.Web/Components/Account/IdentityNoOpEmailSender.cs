@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using WKeeper.Web.Data;
+using WKeeper.Core.Entities.Identity;
 
 namespace WKeeper.Web.Components.Account
 {

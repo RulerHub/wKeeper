@@ -1,6 +1,6 @@
-﻿using wKeeper.Core.Entities.Enterprices;
+﻿using WKeeper.Core.Entities.Enterprices;
 
-namespace wKeeper.Application.Services.Enterprices.Interfaces;
+namespace WKeeper.Application.Services.Enterprices.Interfaces;
 
 public interface IEnterpriceService
 {

@@ -1,10 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using wKeeper.Application.Data;
-using wKeeper.Application.Services.Departments.Interfaces;
-using wKeeper.Core.DataTransferObjets.DepartmentDtos;
-using wKeeper.Core.Entities.Warehouses;
+using WKeeper.Application.Data;
+using WKeeper.Application.Services.Departments.Interfaces;
+using WKeeper.Core.Entities.Warehouses;
 
-namespace wKeeper.Application.Services.Departments.Implements;
+namespace WKeeper.Application.Services.Departments.Implements;
 
 public class DepartmentService(ApplicationDbContext context) : IDepartmentService
 {
@@ -39,7 +38,7 @@ public class DepartmentService(ApplicationDbContext context) : IDepartmentServic
         return await _context.Departments.FirstOrDefaultAsync(c => c.Id == id);
     }
 
-    public async Task<Department?> UpdateAsync(int id, UpdateDepartmentDto model)
+    public async Task<Department?> UpdateAsync(int id, Department model)
     {
         var query = await GetByIdAsync(id);
         if (query is null)
