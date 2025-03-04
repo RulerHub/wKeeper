@@ -10,7 +10,7 @@ using WKeeper.Web.Components.Account.Pages;
 using WKeeper.Web.Components.Account.Pages.Manage;
 using WKeeper.Web.Data;
 
-namespace Microsoft.AspNetCore.Routing
+namespace WKeeper.Web.Components.Account
 {
     internal static class IdentityComponentsEndpointRouteBuilderExtensions
     {
