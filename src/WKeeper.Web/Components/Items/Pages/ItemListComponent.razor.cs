@@ -41,19 +41,19 @@ public partial class ItemListComponent : IDialogContentComponent
     // panel Oversee
     private async Task Oversee(Item data)
     {
-        //DialogParameters<Warehouse> parameters = new()
-        //{
-        //    Content = data,
-        //    Title = $"Oversee {data.Name} Warehouse",
-        //    OnDialogResult = DialogService.CreateDialogCallback(this, HandlePanelAsync),
-        //    Alignment = HorizontalAlignment.Left,
-        //    Modal = false,
-        //    ShowDismiss = false,
-        //    PrimaryAction = "Ok",
-        //    SecondaryAction = "Cancel",
-        //    Width = "600px"
-        //};
-        //await DialogService.ShowPanelAsync<WarehouseOverseePanel, Warehouse>(parameters);
+        DialogParameters<Item> parameters = new()
+        {
+            Content = data,
+            Title = $"Oversee {data.Name} Item",
+            OnDialogResult = DialogService.CreateDialogCallback(this, HandlePanelAsync),
+            Alignment = HorizontalAlignment.Left,
+            Modal = false,
+            ShowDismiss = false,
+            PrimaryAction = "Ok",
+            SecondaryAction = "Cancel",
+            Width = "600px"
+        };
+        await DialogService.ShowPanelAsync<ItemOverseePanel, Item>(parameters);
     }
 
     // create modal
@@ -104,19 +104,19 @@ public partial class ItemListComponent : IDialogContentComponent
         //StateHasChanged();
     }
 
-    //// handle panel
-    //private async Task HandlePanelAsync(DialogResult result)
-    //{
-    //    if (result.Cancelled)
-    //    {
-    //        ToastService.ShowSuccess($"Action Canceled");
-    //        return;
-    //    }
-    //    if (result.Data != null)
-    //    {
-    //        ToastService.ShowSuccess($"Action manage");
-    //        return;
-    //    }
-    //    ToastService.ShowWarning($"Panel closed");
-    //}
+    // handle panel
+    private async Task HandlePanelAsync(DialogResult result)
+    {
+        if (result.Cancelled)
+        {
+            ToastService.ShowSuccess($"Action Canceled");
+            return;
+        }
+        if (result.Data != null)
+        {
+            ToastService.ShowSuccess($"Action manage");
+            return;
+        }
+        ToastService.ShowWarning($"Panel closed");
+    }
 }

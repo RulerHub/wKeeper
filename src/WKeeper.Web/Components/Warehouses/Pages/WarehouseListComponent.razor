@@ -25,45 +25,47 @@
 
 <FluentPaginator State="@pagination" />
 
+<div>
+    <FluentDataGrid Id="warehousegrid"
+                    Pagination="@pagination"
+                    Items="@FilteredWarehouses"
+                    
+                    TGridItem="Warehouse">
 
-<FluentDataGrid Id="warehousegrid"
-                Pagination="@pagination"
-                Items="@FilteredWarehouses"
-                GridTemplateColumns="2fr 1fr 1fr 1fr 1fr 1fr 1fr"
-                TGridItem="Warehouse">
+        <PropertyColumn Title="Name" Property="@(c => c!.Name)" Sortable="true" Align="Align.Start" TooltipText="@(c => c!.Name)" Tooltip="true" />
 
-    <PropertyColumn Title="Name" Property="@(c => c!.Name)" Sortable="true" Align="Align.Start" TooltipText="@(c => c!.Name)" Tooltip="true"/>
+        @if (showCategories)
+        {
+            <PropertyColumn Title="Categories" Property="@(c => c!.Categories.Count())" Sortable="false" Align="Align.End" />
+        }
 
-    @if (showCategories)
-    {
-        <PropertyColumn Title="Categories" Property="@(c => c!.Categories.Count())" Sortable="false" Align="Align.End" />
-    }
-    
-    @if (showDepartments)
-    {
-        <PropertyColumn Title="departments" Property="@(c => c!.Departments.Count())" Sortable="false" Align="Align.End" />
-    }
-    
-    @if (showItems)
-    {
-        <PropertyColumn Title="Items" Property="@(c => c!.Items.Count())" Sortable="false" Align="Align.End" />
-    }
+        @if (showDepartments)
+        {
+            <PropertyColumn Title="departments" Property="@(c => c!.Departments.Count())" Sortable="false" Align="Align.End" />
+        }
 
-    <PropertyColumn Title="Last Update" Property="@(c => c!.DateUpdate)" Sortable="false" Align="Align.End" />
-    <PropertyColumn Title="Price" Property="@(c => c!.WarehousePrice)" Sortable="false" Align="Align.End" />
+        @if (showItems)
+        {
+            <PropertyColumn Title="Items" Property="@(c => c!.Items.Count())" Sortable="false" Align="Align.End" />
+        }
 
-    <TemplateColumn Title="Actions" Align="@Align.End">
+        <PropertyColumn Title="Last Update" Property="@(c => c!.DateUpdate)" Sortable="false" Align="Align.End" />
+        <PropertyColumn Title="Price" Property="@(c => c!.WarehousePrice)" Sortable="false" Align="Align.End" />
 
-        @* <FluentMenuButton Text="Manage">
+        <TemplateColumn Title="Actions" Align="@Align.End">
+
+            @* <FluentMenuButton Text="Manage">
             <FluentMenuItem OnClick="@(() => Oversee(context))" IconEnd="@(new Icons.Regular.Size16.Eye())"></FluentMenuItem>
             <FluentMenuItem OnClick="@(() => Update(context))" IconEnd="@(new Icons.Regular.Size16.Edit())"></FluentMenuItem>
             <FluentMenuItem OnClick="@(() => Delete(context.Id, context.Name))" IconEnd="@(new Icons.Regular.Size16.Delete())"></FluentMenuItem>
         </FluentMenuButton> *@
 
-        <FluentButton OnClick="@(() => Oversee(context))" aria-label="edit" IconEnd="@(new Icons.Regular.Size16.Eye())" />
-        <FluentButton OnClick="@(() => Update(context))" aria-label="edit" IconEnd="@(new Icons.Regular.Size16.Edit())" /> 
-        <FluentButton OnClick="@(() => Delete(context.Id, context.Name))" aria-label="delete" IconEnd="@(new Icons.Regular.Size16.Delete())" />
-    </TemplateColumn>
-</FluentDataGrid>
+            <FluentButton OnClick="@(() => Oversee(context))" aria-label="edit" IconEnd="@(new Icons.Regular.Size16.Eye())" />
+            <FluentButton OnClick="@(() => Update(context))" aria-label="edit" IconEnd="@(new Icons.Regular.Size16.Edit())" />
+            <FluentButton OnClick="@(() => Delete(context.Id, context.Name))" aria-label="delete" IconEnd="@(new Icons.Regular.Size16.Delete())" />
+        </TemplateColumn>
+    </FluentDataGrid>
+
+</div>
 
 

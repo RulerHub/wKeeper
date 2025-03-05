@@ -23,7 +23,6 @@
 <FluentDataGrid Id="itemsgrid"
                 Pagination="@pagination"
                 Items="@FilteredItems"
-                GridTemplateColumns="4fr 1fr 1fr 1fr 1fr"
                 TGridItem="Item">
 
     <PropertyColumn Title="Code" Property="@(c => c!.Code)" Sortable="true" Align="Align.Start" />
