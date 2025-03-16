@@ -21,6 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WKeeper.Application\WKeeper.Application.csproj" />
+    <ProjectReference Include="..\WKeeper.Data\WKeeper.Data.csproj" />
   </ItemGroup>
 </Project>
