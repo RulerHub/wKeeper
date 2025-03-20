@@ -3,12 +3,6 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WKeeper.Data.Data;
-using WKeeper.Data.Services.Categories.Implements;
-using WKeeper.Data.Services.Categories.Interfaces;
-using WKeeper.Data.Services.Departments.Implements;
-using WKeeper.Data.Services.Departments.Interfaces;
-using WKeeper.Data.Services.Enterprices.Implements;
-using WKeeper.Data.Services.Enterprices.Interfaces;
 using WKeeper.Data.Services.Items.Implements;
 using WKeeper.Data.Services.Items.Interfaces;
 using WKeeper.Data.Services.Warehouses.Implements;
@@ -20,11 +14,9 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddAplication(this IServiceCollection services)
     {
-        services.AddScoped<ICategoryService, CategoryService>();
-        services.AddScoped<IDepartmentService, DepartmentService>();
-        services.AddScoped<IEnterpriceService, EnterpriceService>();
         services.AddScoped<IItemService, ItemService>();
         services.AddScoped<IWarehouseService, WarehouseService>();
+        services.AddScoped<WarehouseService>();
 
         return services;
     }

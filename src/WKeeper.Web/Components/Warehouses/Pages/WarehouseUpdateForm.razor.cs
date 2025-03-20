@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.FluentUI.AspNetCore.Components;
-using WKeeper.Core.Entities.Warehouses;
-
+using RulerHub.Shared.Entities.Warehouses;
 
 namespace WKeeper.Web.Components.Warehouses.Pages;
 
@@ -13,7 +12,7 @@ public partial class WarehouseUpdateForm
     public FluentDialog Dialog { get; set; } = default!;
 
     [Parameter]
-    public Warehouse Content { get; set; }
+    public Warehouse Content { get; set; } = default!;
 
     protected override void OnInitialized()
     {

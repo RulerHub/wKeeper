@@ -1,28 +1,26 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using WKeeper.Core.Entities.Enterprices;
-using WKeeper.Core.Entities.Identity;
-using WKeeper.Core.Entities.Logistic;
-using WKeeper.Core.Entities.Sales;
-using WKeeper.Core.Entities.Warehouses;
+using RulerHub.Shared.Entities.Enterprises;
+using RulerHub.Shared.Entities.Identity;
+using RulerHub.Shared.Entities.Logistic;
+using RulerHub.Shared.Entities.Sales;
+using RulerHub.Shared.Entities.Warehouses;
 
 namespace WKeeper.Data.Data;
 
 public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext<ApplicationUser>(options)
 {
     // Enterprice
-    public DbSet<Enterprice> Enterprices { get; set; }
+    public DbSet<Enterprise> Enterprises { get; set; }
     // Logistic
     public DbSet<Provider> Providers { get; set; }
     public DbSet<Purchase> Purchases { get; set; }
     public DbSet<Return> Returns { get; set; }
     // Sales
-    public DbSet<Client> Clients { get; set; }
-    public DbSet<Sale> Sales { get; set; }
+    public DbSet<Department> Departments { get; set; }
     // Warehouse
     public DbSet<Category> Categories { get; set; }
-    public DbSet<Department> Departments { get; set; }
     public DbSet<Item> Items { get; set; }
     public DbSet<Warehouse> Warehouses { get; set; }
 

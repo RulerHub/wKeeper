@@ -1,14 +1,16 @@
 ﻿@page "/"
 
 @using Microsoft.AspNetCore.Identity
-@using WKeeper.Data.Services.Enterprices.Interfaces
-@using WKeeper.Core.Entities.Enterprices
-@using WKeeper.Core.Entities.Identity
-@using WKeeper.Data.Services.Enterprices.Interfaces
+
+@using RulerHub.Shared.Entities.Enterprises
+
+@using RulerHub.Shared.Entities.Identity
+
+@using WKeeper.Data.Services.Warehouses.Implements
 
 @inject NavigationManager NavigationManager
 
-@inject IEnterpriceService EnterpriceService
+@inject WarehouseService WarehouseService
 
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
@@ -37,7 +39,7 @@ else
             <h1>@_enterprice.Name</h1>
             <p>@_enterprice.Description</p>
             <small>@_enterprice.DateCreate</small>
-            <FluentButton OnClick="GoToEManage">Manage</FluentButton>
+            <FluentButton OnClick="GoToWarehouse">Manage</FluentButton>
         }
     </Authorized>
     <NotAuthorized>
@@ -46,7 +48,7 @@ else
 </AuthorizeView>
 
 @code {
-    private Enterprice? _enterprice { get; set; }
+    private Enterprise? _enterprice { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -60,12 +62,13 @@ else
             var appUser = await UserManager.GetUserAsync(user);
             if (appUser != null)
             {
-                _enterprice = await EnterpriceService.GetEnterpriceAsync(appUser.Id);
+                _enterprice = await WarehouseService.GetEnterprise();
             }
         }
     }
 
-    public void GoToEManage(){
-        NavigationManager.NavigateTo("/enterprice/home");
+    public void GoToWarehouse()
+    {
+        NavigationManager.NavigateTo("/warehouse/home");
     }
 }

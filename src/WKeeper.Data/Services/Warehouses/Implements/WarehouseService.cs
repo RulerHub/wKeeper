@@ -1,46 +1,58 @@
-﻿using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using WKeeper.Core.Entities.Identity;
-using WKeeper.Core.Entities.Warehouses;
+using RulerHub.Shared.Entities.Enterprises;
+using RulerHub.Shared.Entities.Warehouses;
+using System.Security.Claims;
 using WKeeper.Data.Data;
-using WKeeper.Data.Services.Enterprices.Interfaces;
 using WKeeper.Data.Services.Warehouses.Interfaces;
 
 namespace WKeeper.Data.Services.Warehouses.Implements;
 
 public class WarehouseService(
     ApplicationDbContext context,
-    UserManager<ApplicationUser> userManager,
-    IEnterpriceService enterpriceService,
-    AuthenticationStateProvider authenticationStateProvider) : IWarehouseService
+    IHttpContextAccessor httpContextAccessor) : IWarehouseService
 {
     private readonly ApplicationDbContext _context = context;
-    private readonly UserManager<ApplicationUser> _userManager = userManager;
-    private readonly IEnterpriceService _enterpriceService = enterpriceService;
-    private readonly AuthenticationStateProvider _authenticationStateProvider = authenticationStateProvider;
+    private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
 
-    public async Task<int> GetEnterpriseIdAsync()
+    private string? GetUserId()
     {
-        var authState = await _authenticationStateProvider.GetAuthenticationStateAsync().ConfigureAwait(false);
-        var user = authState.User;
-        var appUser = await _userManager.GetUserAsync(user).ConfigureAwait(false);
-        var enterpriceModel = await _enterpriceService.GetEnterpriceAsync(appUser.Id).ConfigureAwait(false);
-        return enterpriceModel.Id;
+        return _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
+    }
+
+    public async Task<Enterprise?> GetEnterprise()
+    {
+        var userId = GetUserId();
+        try
+        {
+            if (userId == null) return null;
+            return await _context.Enterprises.FirstOrDefaultAsync(e => e.UserId == userId);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error getting enterprise: {ex.Message}");
+            return null;
+        }
     }
 
     public async Task<Warehouse?> CreateAsync(Warehouse model)
     {
         try
         {
-            model.EnterpriceId = await GetEnterpriseIdAsync().ConfigureAwait(false);
-            await _context.Warehouses.AddAsync(model).ConfigureAwait(false);
-            await _context.SaveChangesAsync().ConfigureAwait(false);
+            var enterprise = await GetEnterprise();
+            if (enterprise == null)
+            {
+                Console.WriteLine("Enterprise not found.");
+                return null;
+            }
+            model.EnterpriceId = enterprise.Id;
+            await _context.Warehouses.AddAsync(model);
+            await _context.SaveChangesAsync();
             return model;
         }
         catch (Exception ex)
         {
-            // Log the exception (logging mechanism not shown here)
+            Console.WriteLine($"Error creating warehouse: {ex.Message}");
             return null;
         }
     }
@@ -49,7 +61,7 @@ public class WarehouseService(
     {
         try
         {
-            var warehouse = await GetByIdAsync(id).ConfigureAwait(false);
+            var warehouse = await GetByIdAsync(id);
             if (warehouse is null)
             {
                 return null;
@@ -59,26 +71,38 @@ public class WarehouseService(
                 return null;
             }
             _context.Warehouses.Remove(warehouse);
-            await _context.SaveChangesAsync().ConfigureAwait(false);
+            await _context.SaveChangesAsync();
             return warehouse;
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            // Log the exception (logging mechanism not shown here)
+            Console.WriteLine($"Error deleting warehouse: {ex.Message}");
             return null;
         }
     }
 
     public async Task<List<Warehouse>> GetAsync()
     {
-        var enterpriseId = await GetEnterpriseIdAsync().ConfigureAwait(false);
-
-        return await _context.Warehouses
-            .Where(c => c.EnterpriceId == enterpriseId)
-            .Include(c => c.Categories)
-            .Include(c => c.Departments)
-            .Include(c => c.Items)
-            .ToListAsync().ConfigureAwait(false);
+        try
+        {
+            var enterprise = await GetEnterprise();
+            if (enterprise == null)
+            {
+                Console.WriteLine("Enterprise not found.");
+                return [];
+            }
+            return await _context.Warehouses
+                .Where(c => c.EnterpriceId == enterprise.Id)
+                .Include(c => c.Categories)
+                .Include(c => c.Departments)
+                .Include(c => c.Items)
+                .ToListAsync();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error creating warehouse: {ex.Message}");
+            return [];
+        }
     }
 
     public async Task<Warehouse?> GetByIdAsync(int id)
@@ -87,14 +111,14 @@ public class WarehouseService(
             .Include(c => c.Categories)
             .Include(c => c.Departments)
             .Include(c => c.Items)
-            .FirstOrDefaultAsync(c => c.Id == id).ConfigureAwait(false);
+            .FirstOrDefaultAsync(c => c.Id == id);
     }
 
     public async Task<Warehouse?> UpdateAsync(int id, Warehouse model)
     {
         try
         {
-            var warehouse = await GetByIdAsync(id).ConfigureAwait(false);
+            var warehouse = await GetByIdAsync(id);
             if (warehouse is null)
             {
                 return null;
@@ -103,12 +127,12 @@ public class WarehouseService(
             warehouse.Name = model.Name;
             warehouse.DateUpdate = DateTime.Now;
 
-            await _context.SaveChangesAsync().ConfigureAwait(false);
+            await _context.SaveChangesAsync();
             return warehouse;
         }
         catch (Exception ex)
         {
-            // Log the exception (logging mechanism not shown here)
+            Console.WriteLine($"Error updating warehouse: {ex.Message}");
             return null;
         }
     }

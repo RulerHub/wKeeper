@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
+using RulerHub.Shared.Entities.Identity;
 using System.Security.Claims;
 using System.Text.Json;
-using WKeeper.Core.Entities.Identity;
 using WKeeper.Web.Components.Account.Pages;
 using WKeeper.Web.Components.Account.Pages.Manage;
 

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.FluentUI.AspNetCore.Components;
-using WKeeper.Core.Entities.Warehouses;
-
+using RulerHub.Shared.Entities.Warehouses;
 
 namespace WKeeper.Web.Components.Warehouses.Pages;
 

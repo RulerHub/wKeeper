@@ -1,4 +1,4 @@
-﻿using WKeeper.Core.Entities.Warehouses;
+﻿using RulerHub.Shared.Entities.Warehouses;
 
 namespace WKeeper.Data.Services.Items.Interfaces;
 

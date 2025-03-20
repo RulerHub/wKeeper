@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.FluentUI.AspNetCore.Components;
-using WKeeper.Core.Entities.Identity;
+using RulerHub.Shared.Entities.Identity;
 using WKeeper.Data;
 using WKeeper.Data.Data;
 using WKeeper.Web.Components;

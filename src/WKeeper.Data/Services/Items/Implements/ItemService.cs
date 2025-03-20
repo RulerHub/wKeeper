@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WKeeper.Core.Entities.Warehouses;
+using RulerHub.Shared.Entities.Warehouses;
 using WKeeper.Data.Data;
 using WKeeper.Data.Services.Items.Interfaces;
 
@@ -11,47 +11,87 @@ public class ItemService(ApplicationDbContext context) : IItemService
 
     public async Task<Item?> CreateAsync(Item model)
     {
-        await _context.Items.AddAsync(model);
-        await _context.SaveChangesAsync();
-        return model;
+        try
+        {
+            await _context.Items.AddAsync(model);
+            await _context.SaveChangesAsync();
+            return model;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error creating item: {ex.Message}");
+            return null;
+        }
     }
 
     public async Task<Item> DeleteAsync(int id)
     {
-        var query = await GetByIdAsync(id);
-        if (query is null)
+        try
         {
+            var query = await GetByIdAsync(id);
+            if (query is null)
+            {
+                return null;
+            }
+            _context.Items.Remove(query);
+            await _context.SaveChangesAsync();
+            return query;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error deleting item: {ex.Message}");
             return null;
         }
-        _context.Items.Remove(query);
-        await _context.SaveChangesAsync();
-        return query;
     }
 
     public async Task<List<Item>> GetAsync()
     {
-        return await _context.Items.ToListAsync();
+        try
+        {
+            return await _context.Items.ToListAsync();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error retrieving items: {ex.Message}");
+            return new List<Item>();
+        }
     }
 
     public async Task<Item?> GetByIdAsync(int id)
     {
-        return await _context.Items.FirstOrDefaultAsync(c => c.Id == id);
+        try
+        {
+            return await _context.Items.FirstOrDefaultAsync(c => c.Id == id);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error retrieving item by id: {ex.Message}");
+            return null;
+        }
     }
 
     public async Task<Item?> UpdateAsync(int id, Item model)
     {
-        var query = await GetByIdAsync(id);
-        if (query is null)
+        try
         {
+            var query = await GetByIdAsync(id);
+            if (query is null)
+            {
+                return null;
+            }
+
+            query.Code = model.Code;
+            query.Name = model.Name;
+            query.Description = model.Description;
+            query.MeasureUnit = model.MeasureUnit;
+
+            await _context.SaveChangesAsync();
+            return query;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error updating item: {ex.Message}");
             return null;
         }
-
-        query.Code = model.Code;
-        query.Name = model.Name;
-        query.Description = model.Description;
-        query.MeasureUnit = model.MeasureUnit;
-
-        await _context.SaveChangesAsync();
-        return query;
     }
 }
